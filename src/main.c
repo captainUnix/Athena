@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "Parser.h"
+
 #define SUCCESS 0
 #define EXIT_CMD "exit"
 #define MAX 255
