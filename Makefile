@@ -5,12 +5,11 @@ CC = gcc
 CFLAGS = -W -Wall -ansi -pedantic
 LDFLAGS=
 
-SRC= 
+SRC_DIR= src
+SRC= $(wildcard $(SRC_DIR)/*.c)
 OBJ= $(SRC:.c=.o)
 
-EXEC=test
-
-#compilation law
+EXEC=athena
 
 all : $(EXEC)
 
