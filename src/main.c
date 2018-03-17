@@ -6,6 +6,13 @@
 #define EXIT_CMD "exit"
 #define MAX 255
 
+/**
+ * Read on stdin and exclude '\n'
+ * @param buffer : read buffer
+ * @param max_lenght : size max of buffer
+ * @return lenght of reading string
+ **/
+
 int readStdin(char * buffer,int max_lenght){
 	int lenght;
 	fgets(buffer,max_lenght,stdin);
@@ -13,6 +20,11 @@ int readStdin(char * buffer,int max_lenght){
 	buffer[lenght - 1] = '\0';
 	return lenght - 1;
 }
+
+/**
+ *Simple prompt
+ **/
+
 void prompt(){
 	char cmd[255];
 	while(1){
