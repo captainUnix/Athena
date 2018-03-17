@@ -1,28 +1,33 @@
 .PHONY: clean, mrproper
+
 .SUFFIXES:
 
-CC = gcc
-CFLAGS = -W -Wall -ansi -pedantic
-LDFLAGS=
+EXE        = athena
+CC         = gcc
+CFLAGS     = -W -Wall -ansi -pedantic
+LDFLAGS    =
 
-SRC_DIR   = src
-BIN_DIR   = bin
+SRC_DIR    = src
+BIN_DIR    = bin
+OBJ_DIR    = obj
+HEADER_DIR = src
 
-SRC  := $(wildcard $(SRC_DIR)/*.c)
-OBJ  := $(SRC:$(SRC_DIR)/%.c=$(BIN_DIR)/%.o)
+SRC       := $(wildcard $(SRC_DIR)/*.c)
+HEAD      := $(wildcard $(SRC_DIR)/*.h)
+OBJ       := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-EXEC=athena
+EXEC      =$(BIN_DIR)/$(EXE)
 
 all : $(EXEC)
 
-$(EXEC): $(OBJ)
+$(EXEC): $(OBJ) $(HEAD)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-$(BIN_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -rf *.o
+	rm -rf obj/*
 
 mrproper: clean
-	        rm -rf $(EXEC)
+	rm -rf bin/*
