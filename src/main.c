@@ -3,8 +3,12 @@
 #include <string.h>
 
 #include "Parser.h"
+#include "SpecialLetters.h"
 
-#define SUCCESS 0
+#ifndef SUCCESS
+	#define SUCCESS 0
+#endif
+
 #define EXIT_CMD "exit"
 #define MAX 255
 
@@ -37,6 +41,16 @@ void prompt(){
 }
 
 int main(){
+	int i;
+	SpecialLetters sp_letters;
+	sp_init(&sp_letters);
+	sp_add(&sp_letters,':');
+	sp_add(&sp_letters,'t');
+	sp_add(&sp_letters,'u');
+	printf("letters : ");
+	for(i = 0; i < sp_letters.lenght;i++)
+		printf("%c ",sp_letters.letters[i]);
+	printf("\n");
 	prompt();
 	return SUCCESS;
 }
